@@ -1,0 +1,58 @@
+{% extends 'app/base_app.html' %}
+
+{% block title %}
+    {{ block.super }} Recipe
+{% endblock %}
+
+{% block content %}
+    <form action="" class="mb-50" id="add_ingredient" method="POST" onsubmit="addRow(); return false;">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                Добавить Ингредиент
+            </legend>
+            <div class="form-row align-items-center">
+                <div class="form-group col-md-6">
+                    <label for="inputState">Ингредиент</label>
+                    <select id="inputState" class="form-control">
+                        <option selected></option>
+                        {% for ing in all_ingredient%}
+                        <option>{{ ing.name }}</option>
+                        {% endfor %}       
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputCity">Количество</label>
+                    <input type="number" class="form-control" id="inputCity">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="subm">Добавить</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <h4>Таблица компонентов</h4>
+    <table class="table table-bordered mt-10" id="tab">
+        <thead>
+            <tr>
+                <th scope="col">Ингредиент</th>
+                <th scope="col">Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+        <div id="recipe_name" class="mt-50 mb-50">
+
+        </div>
+    
+
+    <button type="submit" class="btn btn-primary mb-50" id="btn_ajax">Показать блюдо</button>
+
+{% endblock %}
+
